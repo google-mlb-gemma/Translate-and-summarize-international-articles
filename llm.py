@@ -3,13 +3,12 @@ from llama_cpp import Llama
 from openai import OpenAI
 
 
-def llama_endpoint(text):
+def llama_endpoint(text: str):
     model = Llama(
         model_path='C:\\Users\\jun04\\project\\RAG\\gemma-2-9b-it-Q4_K_M.gguf', #다운로드받은 모델의 위치
         n_ctx=512,
         n_gpu_layers= -1        # Number of model layers to offload to GPU
     )
-    model.tokenizer_()
     output = model(
       text, # Prompt
       max_tokens=512, # Generate up to 32 tokens, set to None to generate up to the end of the context window
@@ -20,7 +19,7 @@ def llama_endpoint(text):
 
 
 
-def vllm_endpoint(text):
+def vllm_endpoint(text: str):
     client = OpenAI(
         base_url=os.environ.get("RUNPOD_BASE_URL"),
         api_key=os.environ.get("RUNPOD_API_KEY"),
@@ -28,7 +27,7 @@ def vllm_endpoint(text):
 
     response = client.chat.completions.create(
     model="google/gemma-2-9b-it",
-    messages=[{"role": "user", "content": f"{text}Read a newspaper article and summarize it in Korean. Write in 1000 characters or less"}],
+    messages=[{"role": "user", "content": f"{text}Read a newspaper article and summarize it in Korean. Write title.Write in 300 characters or less"}],
     temperature=0,
     # max_tokens=4096,
     )

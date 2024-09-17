@@ -31,3 +31,11 @@ def extract_articles(links_list: list, title_class: str, paragraph_class: str):
         articles.append(article)
         time.sleep(1)
     return articles
+
+
+def crawling():
+    link_list = extract_links('https://edition.cnn.com', 'container__link container__link--type-article container_lead-package__link container_lead-package__left container_lead-package__light')
+
+    text_list = extract_articles(link_list, 'headline__text inline-placeholder vossi-headline-primary-core-light', 'paragraph inline-placeholder vossi-paragraph-primary-core-light')
+
+    return text_list, link_list
