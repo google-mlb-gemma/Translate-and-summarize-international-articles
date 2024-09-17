@@ -9,9 +9,9 @@ def extract_links(url: str, html_class: str):
     soup = BeautifulSoup(response.text, "html.parser")
     a_s = soup.find_all("a", class_=html_class)
     links = [links['href'] for links in a_s]
-    full_links = [url + link for link in links]
+    full_links = set(url + link for link in links)
 
-    return full_links
+    return list(full_links)
 
 
 def extract_articles(links_list: list, title_class: str, paragraph_class: str):
@@ -29,5 +29,5 @@ def extract_articles(links_list: list, title_class: str, paragraph_class: str):
             article += f"\n{text}"
     
         articles.append(article)
-    time.sleep(1)
+        time.sleep(1)
     return articles
