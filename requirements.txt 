@@ -3,3 +3,4 @@ beautifulsoup4
 discord
 tqdm
 boto3
+python-dotenv
