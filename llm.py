@@ -5,7 +5,7 @@ from openai import OpenAI
 
 def llama_endpoint(text: str):
     model = Llama(
-        model_path='C:\\Users\\jun04\\project\\RAG\\gemma-2-9b-it-Q4_K_M.gguf', #다운로드받은 모델의 위치
+        model_path='gemma-2-9b-it-Q4_K_M.gguf', #다운로드받은 모델의 위치
         n_ctx=512,
         n_gpu_layers= -1        # Number of model layers to offload to GPU
     )
@@ -19,19 +19,23 @@ def llama_endpoint(text: str):
 
 
 
-def vllm_endpoint(text: str):
+def vllm_endpoint(text: str, news: bool=True):
     client = OpenAI(
         base_url=os.environ.get("RUNPOD_BASE_URL"),
         api_key=os.environ.get("RUNPOD_API_KEY"),
     )
-
+    if news:
+        prompt = f"{text}Read a newspaper article and summarize it in Korean. Write title.Write in 300 characters or less"
+    else:
+        prompt = text
     response = client.chat.completions.create(
     model="google/gemma-2-9b-it",
-    messages=[{"role": "user", "content": f"{text}Read a newspaper article and summarize it in Korean. Write title.Write in 300 characters or less"}],
+    messages=[{"role": "user", "content": prompt}],
     temperature=0,
     # max_tokens=4096,
     )
-    return response.choices[0].message.content
+    # return response.choices[0].message.content
+    return response
 
 
 if __name__ == "__main__":
