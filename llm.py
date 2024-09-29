@@ -1,21 +1,21 @@
 import os
-from llama_cpp import Llama
+#from llama_cpp import Llama
 from openai import OpenAI
 
 
-def llama_endpoint(text: str):
-    model = Llama(
-        model_path='gemma-2-9b-it-Q4_K_M.gguf', #다운로드받은 모델의 위치
-        n_ctx=512,
-        n_gpu_layers= -1        # Number of model layers to offload to GPU
-    )
-    output = model(
-      text, # Prompt
-      max_tokens=512, # Generate up to 32 tokens, set to None to generate up to the end of the context window
-      stop=["<|eot_id|>"], # Stop generating just before the model would generate a new question
-      echo=True # Echo the prompt back in the output
-    )
-    return output['choices'][0]['text'][len(text):]
+# def llama_endpoint(text: str):
+#     model = Llama(
+#         model_path='gemma-2-9b-it-Q4_K_M.gguf', #다운로드받은 모델의 위치
+#         n_ctx=512,
+#         n_gpu_layers= -1        # Number of model layers to offload to GPU
+#     )
+#     output = model(
+#       text, # Prompt
+#       max_tokens=512, # Generate up to 32 tokens, set to None to generate up to the end of the context window
+#       stop=["<|eot_id|>"], # Stop generating just before the model would generate a new question
+#       echo=True # Echo the prompt back in the output
+#     )
+#     return output['choices'][0]['text'][len(text):]
 
 
 
