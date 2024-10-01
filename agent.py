@@ -5,8 +5,6 @@ from langchain_community.document_loaders import WebBaseLoader
 from langchain_core.callbacks import CallbackManager, StreamingStdOutCallbackHandler
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-#import sys
-#sys.path.append("/data/aisvc_data/NLP/flo/codes/LLM/gemma_sprint/module")
 from prompts import *
 from langchain_community.llms.llamacpp import LlamaCpp
 from langchain_community.chat_models import ChatLlamaCpp

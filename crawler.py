@@ -7,7 +7,7 @@ from datetime import datetime
 import yaml
 
 with open("crawl_class.yaml") as f:
-    classes = yaml.load_all(f, Loader=yaml.FullLoader)
+    classes = yaml.load(f, Loader=yaml.FullLoader)
 
 def extract_links(url: str, html_class: str):
     """
